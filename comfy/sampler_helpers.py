@@ -42,7 +42,7 @@ def get_hooks_from_cond(cond, hooks_dict: dict[comfy.hooks.EnumHookType, dict[co
         if cnet.previous_controlnet is None:
             return _list
         return get_extra_hooks_from_cnet(cnet.previous_controlnet, _list)
-        
+
     hooks_list = []
     cnets = set(cnets)
     for base_cnet in cnets:
@@ -103,7 +103,6 @@ def cleanup_additional_models(models):
 
 
 def prepare_sampling(model: 'ModelPatcher', noise_shape, conds):
-    device = model.load_device
     real_model: 'BaseModel' = None
     models, inference_memory = get_additional_models(conds, model.model_dtype())
     models += model.get_nested_additional_models()  # TODO: does this require inference_memory update?
